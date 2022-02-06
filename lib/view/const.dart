@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 class Shopping {
   List<Map<String, dynamic>> shoppingList = [
     {
+      "color": Colors.indigo,
+      "icon": Icons.wysiwyg_outlined,
+      "text": "12379",
+      "subtext": "All Leads!",
+      "title": "View Details",
+    },
+    {
       "color": Colors.red,
       "icon": Icons.cancel,
       "text": "11",
@@ -14,13 +21,6 @@ class Shopping {
       "icon": Icons.calendar_today_outlined,
       "text": "483",
       "subtext": "Last 7 Days Leads!",
-      "title": "View Details",
-    },
-    {
-      "color": Colors.indigo,
-      "icon": Icons.wysiwyg_outlined,
-      "text": "12379",
-      "subtext": "All Leads!",
       "title": "View Details",
     },
     {

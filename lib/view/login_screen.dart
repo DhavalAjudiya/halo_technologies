@@ -1,7 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:halo_technologies/comman/customtextfield.dart';
+import 'package:get/get.dart';
+import 'package:halo_technologies/theam/AppIcons.dart';
+import 'package:halo_technologies/theam/appstyle.dart';
+import 'package:halo_technologies/utils/appstring.dart';
 import 'package:halo_technologies/view/dashboard.dart';
+import 'package:halo_technologies/widget/customtextfield.dart';
+import 'package:halo_technologies/widget/sizeboxbutton.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:sizer/sizer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,100 +18,110 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _isloding = false;
+
   final formkey = GlobalKey<FormState>();
-  final username = TextEditingController();
-  final pass = TextEditingController();
+  final usernamecontoller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            height: size.height * 1,
-            width: size.width * 1,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    "assets/img/a.jpg",
+    return SafeArea(
+      child: Scaffold(
+        // backgroundColor: AppColor.loginbackgroun,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Form(
+                  key: formkey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _logo(),
+                      40.heightBox,
+                      _header(),
+                      40.heightBox,
+                      _usernametextfield(),
+                      20.heightBox,
+                      _passwordtextfield(),
+                      20.heightBox,
+                      _loginbutoon(),
+                    ],
                   ),
-                  fit: BoxFit.cover),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Form(
-                key: formkey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/img/halo_technologies.webp"),
-                    40.heightBox,
-                    TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "required";
-                        }
-                      },
-                      controller: username,
-                      decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        enabledBorder: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(),
-                        focusedErrorBorder: OutlineInputBorder(),
-                        errorBorder: OutlineInputBorder(),
-                        border: InputBorder.none,
-                        focusColor: Colors.orange,
-                        labelText: "username",
-                      ),
-                    ),
-                    20.heightBox,
-                    TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "required";
-                        }
-                      },
-                      controller: pass,
-                      decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        enabledBorder: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(),
-                        focusedErrorBorder: OutlineInputBorder(),
-                        errorBorder: OutlineInputBorder(),
-                        border: InputBorder.none,
-                        focusColor: Colors.orange,
-                        labelText: "password",
-                      ),
-                    ),
-                    20.heightBox,
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (formkey.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Dashboard(),
-                              ),
-                            );
-                          }
-                        },
-                        child: const Text("LOGIN"),
-                      ),
-                    ),
-                  ],
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
+    );
+  }
+
+  Widget _usernametextfield() {
+    return CustomTextFormFiled(
+      prefixIcon: AppIcons.usernameicon,
+      labletext: AppString.loginusertext,
+      controller: usernamecontoller,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _passwordtextfield() {
+    return CustomTextFormFiled(
+      obscureText: _isloding,
+      prefixIcon: AppIcons.passwordicon,
+      suffixIcon: IconButton(
+        onPressed: () {
+          setState(() {
+            _isloding = !_isloding;
+          });
+        },
+        icon: _isloding == false
+            ? AppIcons.showpasswordicon
+            : AppIcons.unshowpasswordicon,
+      ),
+      labletext: AppString.loginpasswordtext,
+      controller: passwordcontroller,
+      validator: (value) {
+        if (value!.isEmpty || value.length < 6) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _loginbutoon() {
+    return SizeboxButoon(
+      color: Colors.black,
+      onPressed: () {
+        if (formkey.currentState!.validate()) {
+          Get.to(const Dashboard());
+        }
+      },
+      child: Text(
+        AppString.logintext,
+        style: AppStyle.login,
+      ),
+    );
+  }
+
+  Widget _logo() {
+    return Image.asset(
+      'assets/img/halo_technologies.webp',
+      height: 25.h,
+    );
+  }
+
+  Widget _header() {
+    return Text(
+      AppString.logintext,
+      style: AppStyle.header,
     );
   }
 }

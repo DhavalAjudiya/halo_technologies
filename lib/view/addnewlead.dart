@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:halo_technologies/widget/customtextfield.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AddNewLead extends StatefulWidget {
@@ -48,203 +49,23 @@ class _AddNewLeadState extends State<AddNewLead> {
                   key: formkey,
                   child: Column(
                     children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: "First Name",
-                          hintText: "Enter First Name",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        keyboardType: TextInputType.name,
-                        textInputAction: TextInputAction.next,
-                        controller: firstname,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _firstname(),
                       10.heightBox,
-                      TextFormField(
-                        keyboardType: TextInputType.name,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Last Name",
-                          hintText: "Enter Last Name",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: lastname,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _lastname(),
                       10.heightBox,
-                      TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Email id1",
-                          hintText: "Enter Email",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: email,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _emailid1(),
                       10.heightBox,
-                      TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Email id2",
-                          hintText: "Enter Email",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: emailid,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _emailid(),
                       10.heightBox,
-                      TextFormField(
-                        keyboardType: TextInputType.phone,
-                        textInputAction: TextInputAction.next,
-                        inputFormatters: [LengthLimitingTextInputFormatter(10)],
-                        decoration: InputDecoration(
-                          labelText: "Mobile",
-                          hintText: "Enter Mobile Number",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: mobile,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _mobilenumber(),
                       10.heightBox,
-                      TextFormField(
-                        keyboardType: TextInputType.phone,
-                        textInputAction: TextInputAction.next,
-                        inputFormatters: [LengthLimitingTextInputFormatter(10)],
-                        decoration: InputDecoration(
-                          labelText: "Phone",
-                          hintText: "Enter Phone number",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: phone,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _phonenumber(),
                       10.heightBox,
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Birth Date",
-                          hintText: "Enter Birth Date",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: brithdaydate,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _brithdate(),
                       10.heightBox,
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Centre",
-                          hintText: "Enter Centre",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: centre,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _center(),
                       10.heightBox,
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Assigned to",
-                          hintText: "All executivesAssigned to",
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        controller: centre,
-                        validator: (value) {
-                          if (value == null) {
-                            return "required";
-                          }
-                        },
-                      ),
+                      _assigned(),
                     ],
                   ),
                 ),
@@ -598,6 +419,132 @@ class _AddNewLeadState extends State<AddNewLead> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _firstname() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'Enter First name',
+      labletext: 'Frist Name',
+      controller: firstname,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _lastname() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'Enter Last name',
+      labletext: 'Last Name',
+      controller: lastname,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _emailid1() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'Enter Email id',
+      labletext: 'Email 1',
+      controller: emailid,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _emailid() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'Enter Email',
+      labletext: 'Eamil 2',
+      controller: email,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _mobilenumber() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'Enter Mobile Number',
+      labletext: 'Mobile Number',
+      controller: mobile,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _phonenumber() {
+    return CustomTextFormFiled(
+      hinttext: 'Enter Phone Number',
+      color: Colors.black,
+      labletext: 'Phone Number',
+      controller: phone,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _brithdate() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'Enter Birth Date ',
+      labletext: "Birth Date",
+      controller: brithdaydate,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _center() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'Enter Center',
+      labletext: 'Center',
+      controller: centre,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
+    );
+  }
+
+  Widget _assigned() {
+    return CustomTextFormFiled(
+      color: Colors.black,
+      hinttext: 'All executiveAssigned to',
+      labletext: 'Assigned to',
+      controller: firstname,
+      validator: (value) {
+        if (value == null) {
+          return "required";
+        }
+      },
     );
   }
 }

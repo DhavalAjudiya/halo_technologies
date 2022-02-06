@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:halo_technologies/view/addnewlead.dart';
 import 'package:halo_technologies/view/const.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -244,76 +245,88 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                             border: Border.all(
                                 color: _shopping.shoppingList[index]['color'])),
-                        child: Column(
-                          children: [
-                            Container(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        _shopping.shoppingList[index]['icon'],
-                                        size: 60,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddNewLead(),
+                                ));
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          _shopping.shoppingList[index]['icon'],
+                                          size: 60,
+                                          color: Vx.white,
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${_shopping.shoppingList[index]['text']}",
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.w800),
+                                        ),
+                                        Text(
+                                          "${_shopping.shoppingList[index]['subtext']}",
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 17,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                height: 120,
+                                // width: 250,
+                                color: _shopping.shoppingList[index]['color'],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Row(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(
+                                      "${_shopping.shoppingList[index]['title']}",
+                                      style: const TextStyle(
+                                        fontSize: 17,
+
+                                        // color: _shopping.shoppingList[index]['color'],
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    CircleAvatar(
+                                      radius: 15,
+                                      backgroundColor: _shopping
+                                          .shoppingList[index]['color'],
+                                      child: const Icon(
+                                        Icons.arrow_forward_rounded,
                                         color: Vx.white,
                                       ),
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "${_shopping.shoppingList[index]['text']}",
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w800),
-                                      ),
-                                      Text(
-                                        "${_shopping.shoppingList[index]['subtext']}",
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                    )
+                                  ],
+                                ),
                               ),
-                              height: 120,
-                              // width: 250,
-                              color: _shopping.shoppingList[index]['color'],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: Row(
-                                // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    "${_shopping.shoppingList[index]['title']}",
-                                    style: const TextStyle(
-                                      fontSize: 17,
-
-                                      // color: _shopping.shoppingList[index]['color'],
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  CircleAvatar(
-                                    radius: 15,
-                                    backgroundColor:
-                                        _shopping.shoppingList[index]['color'],
-                                    child: const Icon(
-                                      Icons.arrow_forward_rounded,
-                                      color: Vx.white,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         // height: 150,
                         // width: 250,
